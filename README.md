@@ -1,101 +1,64 @@
-# Infraestrutura de Rede e Serviços - Condomínio de Laboratórios CCAA/UFS
+# 🏢 Infraestrutura de Rede e Serviços - Condomínio de Laboratórios CCAA/UFS
 
-**Projeto:** Implantação de Infraestrutura de Rede e Portal Web para Condomínio de Laboratórios Multiusuários.
-**Edital/Disciplina:** Redes de Computadores / Projetos de TI.
-**Status:** 🟢 Em Produção na AWS.
+![Status](https://img.shields.io/badge/Status-Em_Produção_na_AWS-success?style=for-the-badge)
+![Docker](https://img.shields.io/badge/Container-Docker-blue?style=for-the-badge&logo=docker)
+![Server](https://img.shields.io/badge/Server-Nginx_Alpine-green?style=for-the-badge&logo=nginx)
 
----
-
-## 🏆 I - Mérito Técnico-Científico
-
-Esta seção detalha a validação da proposta no ambiente de nuvem (AWS Academy) e a arquitetura técnica adotada para cada unidade do condomínio.
-
-**🔗 Link para este Repositório (Proposta):** [INSIRA_AQUI_O_LINK_DO_SEU_GITHUB]
-
-### 🌐 Validação do Site (Deploy AWS)
-O portal unificado do condomínio foi implantado utilizando containers Docker em uma instância EC2. Abaixo, a relação de acesso e a função técnica de cada laboratório dentro da topologia proposta.
-
-| Grupo / Laboratório | Descrição Técnica da Solução | IP de Acesso (AWS) |
-| :--- | :--- | :--- |
-| **CTP (Líder/Host)** | **Nó Central (Web Server).** Hospeda o container Docker (Nginx Alpine) na porta 80/443. Atua como Gateway de Aplicação para os demais grupos. | **[http://XX.XX.XX.XX](http://XX.XX.XX.XX)** <br> *(Substituir pelo IP Público da AWS)* |
-| **GEAGRI** | **Cliente IoT/Monitoramento.** Laboratório integrado à VLAN 30 (IoT). No site, possui painel de visualização de dados de sensores (Engenharia Agrícola). | *Acessível via Portal Principal* |
-| **ECOS** | **Cliente de Armazenamento.** Laboratório com demanda de Big Data (Imagens de Satélite). Integrado à rede Gigabit para transferência de arquivos pesados. | *Acessível via Portal Principal* |
-| **GENAPLANT** | **Cliente de Banco de Dados.** Demanda acesso seguro e persistência de dados genéticos. Conectado via VLAN Segura (20) ao servidor central. | *Acessível via Portal Principal* |
-| **GRAF** | **Extensão e Divulgação.** Focado em acesso externo (Visitantes). Utiliza a interface web para reportar atividades de campo no semiárido. | *Acessível via Portal Principal* |
-
-> **Nota de Acesso AWS:** Certifique-se de que o *Security Group* da instância EC2 permite tráfego de entrada nas portas **80 (HTTP)** e **443 (HTTPS)** e **22 (SSH)**.
-
----
-
-## 📋 II - Detalhes do Projeto
-
-Este projeto visa modernizar e integrar a infraestrutura tecnológica de **05 Grupos de Pesquisa** da UFS. A solução centraliza o processamento, garante segurança (patentes/cultivares) e unifica a divulgação científica.
-
-### 🛠️ Arquitetura e Tecnologias
-A infraestrutura foi desenhada priorizando alta disponibilidade e baixo custo (Open Source).
-
-* **Infraestrutura Lógica:**
-    * **SO:** Ubuntu Server 24.04 LTS (Hospedeiro AWS).
-    * **Containerização:** Docker (Isolamento de serviços).
-    * **Servidor Web:** Nginx Alpine (Leve e Seguro).
-    * **Segurança:** Certificado SSL Autoassinado (HTTPS) e VLANs (802.1Q).
-
-* **Infraestrutura Física Simulada:**
-    * **Topologia:** Estrela Estendida (Backbone Gigabit).
-    * **Segmentação:** Redes separadas para IoT (VLAN 30), Pesquisa (VLAN 20) e Visitantes (VLAN 40).
-
----
-
-## 🚀 Como Validar (Passo a Passo)
-
-# Infraestrutura de Rede e Serviços - Condomínio de Laboratórios CCAA/UFS
-
-**Projeto:** Implantação de Infraestrutura de Rede e Portal Web para Condomínio de Laboratórios Multiusuários.
-**Edital/Disciplina:** Redes de Computadores / Projetos de TI.
-**Status:** 🟢 Em Produção na AWS.
+**Projeto:** Implantação de Infraestrutura de Rede e Portal Web para Condomínio de Laboratórios Multiusuários.  
+**Instituição:** Universidade Federal de Sergipe (UFS) - Centro de Ciências Agrárias Aplicadas.  
+**Disciplina:** Laboratório de Redes de Computadores.
 
 ---
 
 ## 🏆 I - Mérito Técnico-Científico
 
-Esta seção detalha a validação da proposta no ambiente de nuvem (AWS Academy) e a arquitetura técnica adotada para cada unidade do condomínio.
-
-**🔗 Link para este Repositório (Proposta):** [INSIRA_AQUI_O_LINK_DO_SEU_GITHUB]
+Esta seção apresenta a validação prática da proposta no ambiente de nuvem (**AWS Academy**) e descreve a arquitetura técnica de cada laboratório integrante do condomínio.
 
 ### 🌐 Validação do Site (Deploy AWS)
-O portal unificado do condomínio foi implantado utilizando containers Docker em uma instância EC2. Abaixo, a relação de acesso e a função técnica de cada laboratório dentro da topologia proposta.
 
-| Grupo / Laboratório | Descrição Técnica da Solução | IP de Acesso (AWS) |
+O portal unificado do condomínio encontra-se implantado e acessível publicamente através de uma instância EC2, utilizando orquestração de containers Docker.
+
+> **🔗 ACESSO AO PORTAL (LINK AWS):** > 👉 **[http://ec2-52-7-32-98.compute-1.amazonaws.com/](http://ec2-52-7-32-98.compute-1.amazonaws.com/)**
+
+### 🔬 Descrição Técnica dos Laboratórios Integrados
+
+Abaixo, detalha-se a função de cada laboratório na topologia de rede proposta e seu papel no ecossistema digital do condomínio.
+
+| Grupo / Laboratório | Papel na Rede | Descrição Técnica da Solução |
 | :--- | :--- | :--- |
-| **CTP (Líder/Host)** | **Nó Central (Web Server).** Hospeda o container Docker (Nginx Alpine) na porta 80/443. Atua como Gateway de Aplicação para os demais grupos. | **[http://XX.XX.XX.XX](http://XX.XX.XX.XX)** <br> *(Substituir pelo IP Público da AWS)* |
-| **GEAGRI** | **Cliente IoT/Monitoramento.** Laboratório integrado à VLAN 30 (IoT). No site, possui painel de visualização de dados de sensores (Engenharia Agrícola). | *Acessível via Portal Principal* |
-| **ECOS** | **Cliente de Armazenamento.** Laboratório com demanda de Big Data (Imagens de Satélite). Integrado à rede Gigabit para transferência de arquivos pesados. | *Acessível via Portal Principal* |
-| **GENAPLANT** | **Cliente de Banco de Dados.** Demanda acesso seguro e persistência de dados genéticos. Conectado via VLAN Segura (20) ao servidor central. | *Acessível via Portal Principal* |
-| **GRAF** | **Extensão e Divulgação.** Focado em acesso externo (Visitantes). Utiliza a interface web para reportar atividades de campo no semiárido. | *Acessível via Portal Principal* |
-
-> **Nota de Acesso AWS:** Certifique-se de que o *Security Group* da instância EC2 permite tráfego de entrada nas portas **80 (HTTP)** e **443 (HTTPS)** e **22 (SSH)**.
+| **CTP** <br>*(Líder/Host)* | **Web Server & Gateway** | **Nó Central.** Hospeda o container Docker (Nginx Alpine) atuando como Gateway de Aplicação. Centraliza o tráfego HTTP/HTTPS e distribui a interface visual para os visitantes. |
+| **GEAGRI** <br>*(Eng. Agrícola)* | **IoT & Monitoramento** | **Cliente da VLAN 30 (IoT).** Laboratório responsável pela telemetria. No portal, integra-se via painéis de visualização de dados de sensores (umidade/temperatura) das estufas. |
+| **ECOS** <br>*(Ecossistemas)* | **Big Data Storage** | **Cliente de Armazenamento.** Demanda alta largura de banda (Gigabit) para tráfego de imagens de satélite e mapas. Utiliza a rede para backup massivo no servidor central. |
+| **GENAPLANT** <br>*(Genética)* | **Database Client** | **Segurança de Dados.** Requer persistência crítica e confidencialidade (Patentes). Conecta-se via **VLAN 20 (Pesquisa)**, isolada da rede de visitantes, garantindo integridade dos dados genéticos. |
+| **GRAF** <br>*(Agroflorestal)* | **Extensão (Public)** | **Acesso Externo.** Focado na divulgação científica para comunidades rurais. Utiliza a infraestrutura para disponibilizar relatórios técnicos acessíveis via internet pública e móvel. |
 
 ---
 
-## 📋 II - Detalhes do Projeto
+## 📋 II - Detalhes da Infraestrutura
 
-Este projeto visa modernizar e integrar a infraestrutura tecnológica de **05 Grupos de Pesquisa** da UFS. A solução centraliza o processamento, garante segurança (patentes/cultivares) e unifica a divulgação científica.
+O projeto moderniza a infraestrutura tecnológica do CCAA/UFS, migrando de servidores físicos isolados para uma arquitetura de **Condomínio Digital**, garantindo segurança, economia e escalabilidade.
 
-### 🛠️ Arquitetura e Tecnologias
-A infraestrutura foi desenhada priorizando alta disponibilidade e baixo custo (Open Source).
+### 🛠️ Arquitetura Lógica e Stack Tecnológica
+A solução foi desenhada priorizando tecnologias Open Source e alta disponibilidade:
 
-* **Infraestrutura Lógica:**
-    * **SO:** Ubuntu Server 24.04 LTS (Hospedeiro AWS).
-    * **Containerização:** Docker (Isolamento de serviços).
-    * **Servidor Web:** Nginx Alpine (Leve e Seguro).
-    * **Segurança:** Certificado SSL Autoassinado (HTTPS) e VLANs (802.1Q).
-
-* **Infraestrutura Física Simulada:**
-    * **Topologia:** Estrela Estendida (Backbone Gigabit).
-    * **Segmentação:** Redes separadas para IoT (VLAN 30), Pesquisa (VLAN 20) e Visitantes (VLAN 40).
+* **Hospedeiro (Cloud):** Instância AWS EC2 (Ubuntu Server 24.04 LTS).
+* **Containerização:** Docker Engine (Isolamento de serviços e portabilidade).
+* **Servidor Web:** Nginx Alpine (Imagem leve de <10MB, otimizada para performance).
+* **Segurança de Rede:**
+    * **VLANs (IEEE 802.1Q):** Segmentação de tráfego (VLAN 30 IoT | VLAN 20 Pesquisa | VLAN 40 Visitantes).
+    * **Firewall (Security Groups):** Regras de entrada restritas às portas 80, 443 e 22.
 
 ---
 
-## 🚀 Como Validar (Passo a Passo)
+## 🚀 Como Validar (Roteiro de Teste)
 
-http://ec2-52-7-32-98.compute-1.amazonaws.com/
+Para a avaliação do projeto na turma do AWS, siga os passos abaixo:
+
+1.  **Acesso ao Portal:**
+    * Clique no link [http://ec2-52-7-32-98.compute-1.amazonaws.com/](http://ec2-52-7-32-98.compute-1.amazonaws.com/).
+    * O navegador carregará a *Landing Page* unificada do Condomínio.
+2.  **Verificação de Navegação (Overlay):**
+    * Clique em qualquer "Card" dos grupos de pesquisa (ex: GEAGRI, CTP).
+    * Observe que a área clicável cobre todo o cartão (UX otimizada), redirecionando para a seção específica ou site externo do grupo.
+3.  **Verificação de Infraestrutura (Via Terminal/SSH):**
+    * Ao acessar a instância via SSH, execute `sudo docker ps` para confirmar que o container `site-condominio` está ativo e mapeando a porta `0.0.0.0:80->80/tcp`.
