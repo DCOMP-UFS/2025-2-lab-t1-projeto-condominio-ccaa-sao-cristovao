@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Condomínio de Laboratórios - CCAA/UFS</title>
+    <style>
+        /* --- ESTILOS GERAIS --- */
+        :root {
+            --ufs-blue: #004a8d;
+            --ufs-light: #f4f6f8;
+            --text-color: #333;
+            --ctp-green: #27ae60;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: var(--text-color);
+            background-color: #fff;
+            line-height: 1.6;
+        }
+
+        a { text-decoration: none; }
+
+        /* --- HEADER --- */
+        header {
+            background-color: var(--ufs-blue);
+            color: white;
+            padding: 20px 0;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo h1 { margin: 0; font-size: 1.5rem; }
+        .logo span { font-size: 0.9rem; font-weight: normal; opacity: 0.9; }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav a { color: white; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: #bdc3c7; }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(rgba(0, 74, 141, 0.8), rgba(0, 74, 141, 0.8)), url('https://source.unsplash.com/1600x900/?laboratory,science');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .hero h2 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px auto; }
+
+        .btn-cta {
+            background-color: var(--ctp-green);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        .btn-cta:hover { transform: scale(1.05); background-color: #219150; }
+
+        /* --- GRID DE GRUPOS --- */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 { color: var(--ufs-blue); margin-bottom: 10px; }
+        .section-title p { color: #666; }
+
+        .grid-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+        }
+
+        /* --- CARD ESTILO CLICÁVEL --- */
+        .card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            padding: 25px;
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
+            border-top: 4px solid var(--ufs-blue);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative; /* Essencial para o link esticado funcionar */
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+            border-top-color: #0066cc; /* Realça a cor ao passar o mouse */
+        }
+
+        /* O Link Mágico que cobre o card todo */
+        .card-link-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1; /* Fica acima do conteúdo básico */
+        }
+
+        /* Destaque para o Cliente (CTP) */
+        .card.destaque {
+            border-top: 4px solid var(--ctp-green);
+            background-color: #f9fff9;
+        }
+        .card.destaque:hover {
+            border-top-color: #2ecc71;
+        }
+
+        .card h3 { margin-top: 0; color: #2c3e50; font-size: 1.4rem; }
+        .card h5 { margin: -10px 0 15px 0; color: #7f8c8d; font-weight: normal; font-size: 0.95rem; }
+        .card hr { border: 0; border-top: 1px solid #eee; margin: 15px 0; }
+        .card p { font-size: 0.95rem; color: #555; text-align: justify; }
+        .card .coordenacao { font-size: 0.85rem; color: #333; margin-top: 15px; font-weight: bold; }
+
+        .card-actions {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-start; /* Alinhado à esquerda */
+            align-items: center;
+        }
+
+        /* Link de e-mail (precisa ficar ACIMA do link do card) */
+        .email-link { 
+            color: var(--ufs-blue); 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+            position: relative; 
+            z-index: 2; /* Importante: faz o e-mail ser clicável separadamente */
+            border: 1px solid #eee;
+            padding: 5px 10px;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .email-link:hover {
+            background-color: #eee;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #2c3e50;
+            color: #bdc3c7;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+        footer p { margin: 5px 0; font-size: 0.9rem; }
+        footer strong { color: white; }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .header-content { flex-direction: column; gap: 15px; text-align: center; }
+            .hero h2 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <h1>Condomínio de Laboratórios</h1>
+                <span>Centro de Ciências Agrárias Aplicadas - UFS</span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#grupos">Grupos de Pesquisa</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Inovação e Ciência Integrada</h2>
+        <p>Conectando saberes em Engenharia Agrícola, Biotecnologia, Ecossistemas e Genética para o desenvolvimento sustentável.</p>
+        <a href="#grupos" class="btn-cta">Conheça os Grupos</a>
+    </section>
+
+    <section id="grupos" class="container">
+        <div class="section-title">
+            <h2>Grupos Integrados</h2>
+            <p>Clique no cartão para acessar o site de cada grupo.</p>
+        </div>
+
+        <div class="grid-cards">
+
+            <div class="card destaque">
+                <a href="http://ec2-100-48-148-104.compute-1.amazonaws.com/" class="card-link-overlay" title="Visitar site do GEAGRI" target="_blank"></a>
+                
+                <div>
+                    <h3>GEAGRI</h3>
+                    <h5>Engenharia Agrícola</h5>
+                    <hr>
+                    <p>Criado em 2013, desenvolve pesquisas teóricas e práticas em Engenharia Agrícola. Administra 7 laboratórios (incluindo CREAG e LABTOP) e colabora na formação de RH da graduação ao pós-doutorado. Possui parcerias com EMBRAPA Tabuleiro Costeiro, UFRRJ e UFLA.</p>
+                    <div class="coordenacao">Coord: Prof. André Quintão de Almeida</div>
+                </div>
+                <div class="card-actions">
+                    <a href="mailto:andreqa@gmail.com" class="email-link">📧 Enviar E-mail</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="#" class="card-link-overlay" title="Visitar site do ECOS" target="_blank"></a>
+
+                <div>
+                    <h3>ECOS</h3>
+                    <h5>Grupo de Pesquisa em Biologia e Gestão de Ecossistemas Costeiros Marinhos</h5>
+                    <hr>
+                    <p>Fundado em 1983, monitora a dinâmica dos ambientes costeiros de Sergipe. Cooordena o Herbário da UFS e laboratórios de Química Ambiental. Com histórico de financiamento da PETROBRAS e FINEP, atua do ambiente costeiro ao Talude Continental.</p>
+                    <div class="coordenacao">Coord: Dr. Leonardo Cruz da Rosa</div>
+                </div>
+                <div class="card-actions">
+                    <a href="mailto:lcrosa@academico.ufs.br" class="email-link">📧 Enviar E-mail</a>
+                </div>
+            </div>
+
+            <div class="card destaque">
+                <a href="http://ec2-35-169-30-189.compute-1.amazonaws.com" class="card-link-overlay" title="Visitar site do CTP" target="_blank"></a>
+
+                <div>
+                    <h3>CTP</h3>
+                    <h5>Cultura de Tecidos de Plantas</h5>
+                    <hr>
+                    <p><strong>Líder do Projeto.</strong> Referência desde 2006 na aplicação biotecnológica para agricultura. Foca na micropropagação para conservação de recursos genéticos e fisiologia vegetal. Mantém parceria com a UFU e administra laboratórios de ponta em melhoramento vegetal.</p>
+                    <div class="coordenacao">Coord: Profa. Maria de Fátima Arrigoni</div>
+                </div>
+                <div class="card-actions">
+                    <a href="mailto:arrigoni@academico.ufs.br" class="email-link">📧 Enviar E-mail</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="#" class="card-link-overlay" title="Visitar site do GENAPLANT" target="_blank"></a>
+
+                <div>
+                    <h3>GENAPLANT</h3>
+                    <h5>Gestão de Recursos Genéticos</h5>
+                    <hr>
+                    <p>Desde 2002, estabelece interação multidisciplinar para gestão de recursos genéticos agrícolas e florestais. Investiga desde a base genética até o conhecimento tradicional e pressões antrópicas. Administra o Laboratório Genaplant.</p>
+                    <div class="coordenacao">Coord: Profa. Renata Silva Mann</div>
+                </div>
+                <div class="card-actions">
+                    <a href="mailto:renatamann@academico.ufs.br" class="email-link">📧 Enviar E-mail</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <a href="#" class="card-link-overlay" title="Visitar site do GRAF" target="_blank"></a>
+
+                <div>
+                    <h3>GRAF</h3>
+                    <h5>Grupo de Pesquisa Agroflorestal</h5>
+                    <hr>
+                    <p>Vinculado ao DCF/UFS, difunde sistemas agroflorestais em comunidades rurais do semiárido. Com forte viés de extensão, possui parcerias com o Banco do Nordeste (BNB) e Instituto Xingó. Conta com mais de 50 participantes ativos.</p>
+                    <div class="coordenacao">Coord: Prof. Dr. Mário Jorge Campos dos Santos</div>
+                </div>
+                <div class="card-actions">
+                    <a href="mailto:mjkampos@gmail.com" class="email-link">📧 Enviar E-mail</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer id="contato">
+        <p><strong>Condomínio de Laboratórios Multiusuários - CCAA</strong></p>
+        <p>Universidade Federal de Sergipe (UFS)</p>
+        <p style="margin-top: 15px; font-size: 0.8rem; opacity: 0.7;">
+            Projeto de Infraestrutura desenvolvido para a disciplina de Laboratório de Redes de Computadores. <br>
+            Apoio: Edital Nº 01/2026.
+        </p>
+    </footer>
+
+</body>
+</html>
